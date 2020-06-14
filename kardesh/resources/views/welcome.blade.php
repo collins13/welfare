@@ -104,7 +104,8 @@
                       <div class="progress custom-progress-success">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                      <span class="fund-raised d-block">$12,000 raised of $30,000</span><hr>
+                      <a href="#" class="text center">Read more and Donate <i class="ion-ios-arrow-forward"></i></a>
                               </div>
                           </div>
                       </div>
@@ -118,7 +119,8 @@
                       <div class="progress custom-progress-success">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                      <span class="fund-raised d-block">$12,000 raised of $30,000</span><hr>
+                      <a href="#" class="text center">Read more and Donate <i class="ion-ios-arrow-forward"></i></a>
                               </div>
                           </div>
                       </div>
@@ -132,7 +134,8 @@
                       <div class="progress custom-progress-success">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                      <span class="fund-raised d-block">$12,000 raised of $30,000</span><hr>
+                      <a href="#" class="text center">Read more and Donate <i class="ion-ios-arrow-forward"></i></a>
                               </div>
                           </div>
                       </div>
@@ -146,7 +149,8 @@
                       <div class="progress custom-progress-success">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                      <span class="fund-raised d-block">$12,000 raised of $30,000</span><hr>
+                      <a href="#" class="text center">Read more and Donate <i class="ion-ios-arrow-forward"></i></a>
                               </div>
                           </div>
                       </div>
@@ -160,7 +164,8 @@
                       <div class="progress custom-progress-success">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                      <span class="fund-raised d-block">$12,000 raised of $30,000</span><hr>
+                      <a href="#" class="text center">Read more and Donate <i class="ion-ios-arrow-forward"></i></a>
                               </div>
                           </div>
                       </div>
@@ -174,7 +179,8 @@
                       <div class="progress custom-progress-success">
                         <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
-                      <span class="fund-raised d-block">$12,000 raised of $30,000</span>
+                      <span class="fund-raised d-block">$12,000 raised of $30,000</span><hr>
+                      <a href="#" class="text center">Read more and Donate <i class="ion-ios-arrow-forward"></i></a>
                               </div>
                           </div>
                       </div>
@@ -189,52 +195,26 @@
         <div class="row justify-content-center mb-5 pb-3">
         <div class="col-md-7 heading-section ftco-animate text-center">
           <h2 class="mb-4">Latest Donations</h2>
-          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+         
         </div>
       </div>
       <div class="row">
-          <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
-              <div class="staff">
-                  <div class="d-flex mb-4">
-                      <div class="img" style="background-image: url(/assets/images/person_1.jpg);"></div>
-                      <div class="info ml-4">
-                          <h3><a href="teacher-single.html">Ivan Jacobson</a></h3>
-                          <span class="position">Donated Just now</span>
-                          <div class="text">
-                              <p>Donated <span>$300</span> for <a href="#">Children Needs Food</a></p>
-                          </div>
+        @foreach ($donates as $donate)
+        <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
+          <div class="staff">
+              <div class="d-flex mb-4">
+                  <div class="img" style="background-image: url(/base/assets/img/images.jpeg);"></div>
+                  <div class="info ml-4">
+                      <h3><a href="teacher-single.html">{{ $donate->name }}</a></h3>
+                      <span class="position">{{ Carbon\Carbon::parse($donate->created_at)->isoFormat('dddd, MMMM Do YYYY') }}</span>
+                      <div class="text">
+                          <p>Donated <span>${{ $donate->amount }}</span> for <a href="#">{{ $donate->categories['title'] }}</a></p>
                       </div>
                   </div>
               </div>
           </div>
-          <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
-              <div class="staff">
-                  <div class="d-flex mb-4">
-                      <div class="img" style="background-image: url(/assets/images/person_2.jpg);"></div>
-                      <div class="info ml-4">
-                          <h3><a href="teacher-single.html">Ivan Jacobson</a></h3>
-                          <span class="position">Donated Just now</span>
-                          <div class="text">
-                              <p>Donated <span>$150</span> for <a href="#">Children Needs Food</a></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
-              <div class="staff">
-                  <div class="d-flex mb-4">
-                      <div class="img" style="background-image: url(/assets/images/person_3.jpg);"></div>
-                      <div class="info ml-4">
-                          <h3><a href="teacher-single.html">Ivan Jacobson</a></h3>
-                          <span class="position">Donated Just now</span>
-                          <div class="text">
-                              <p>Donated <span>$250</span> for <a href="#">Children Needs Food</a></p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+      </div>
+          @endforeach
       </div>
     </div>
   </section>
@@ -352,57 +332,29 @@
         </div>
       </div>
       <div class="row">
-          <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('/assets/images/event-1.jpg');">
-            </a>
-            <div class="text p-4 d-block">
-                <div class="meta mb-3">
-                <div><a href="#">Sep. 10, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mb-4"><a href="#">World Wide Donation</a></h3>
-              <p class="time-loc"><span class="mr-2"><i class="icon-clock-o"></i> 10:30AM-03:30PM</span> <span><i class="icon-map-o"></i> Venue Main Campus</span></p>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="event.html">Join Event <i class="ion-ios-arrow-forward"></i></a></p>
-            </div>
-          </div>
-        </div>
+        @if(count($events) > 0)
+        @foreach ($events as $event)
         <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('/assets/images/event-2.jpg');">
-            </a>
-            <div class="text p-4 d-block">
-                <div class="meta mb-3">
-                <div><a href="#">Sep. 10, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mb-4"><a href="#">World Wide Donation</a></h3>
-              <p class="time-loc"><span class="mr-2"><i class="icon-clock-o"></i> 10:30AM-03:30PM</span> <span><i class="icon-map-o"></i> Venue Main Campus</span></p>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="event.html">Join Event <i class="ion-ios-arrow-forward"></i></a></p>
+          <div class="blog-entry align-self-stretch">
+          <a href="blog-single.html" class="block-20" style="background-image: url('/storage/images/{{ $event->image }}');">
+          </a>
+          <div class="text p-4 d-block">
+              <div class="meta mb-3">
+              <div><a href="#">{{ Carbon\Carbon::parse($event->created_at)->isoFormat('dddd, MMMM Do YYYY') }}</a></div>
+              {{-- <div><a href="#">{{ $event->created_by }}</a></div> --}}
+              <div><a href="#" class="meta-chat"></a></div>
             </div>
+            <h3 class="heading mb-4"><a href="#">{{ $event->agenda }}</a></h3>
+            <p class="time-loc"><span class="mr-2"><i class="icon-clock-o"></i> {{ $event->time }}</span> <span><i class="icon-map-o"></i> {{$event->venue}}</span></p>
+            <p>{{ Str::limit($event->description, 80) }}</p>
+            <p><a href="{{ route('event_detail', $event->id) }}">Read more and Join Event <i class="ion-ios-arrow-forward"></i></a></p>
           </div>
         </div>
-        <div class="col-md-4 d-flex ftco-animate">
-            <div class="blog-entry align-self-stretch">
-            <a href="blog-single.html" class="block-20" style="background-image: url('/assets/images/event-3.jpg');">
-            </a>
-            <div class="text p-4 d-block">
-                <div class="meta mb-3">
-                <div><a href="#">Sep. 10, 2018</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
-              </div>
-              <h3 class="heading mb-4"><a href="#">World Wide Donation</a></h3>
-              <p class="time-loc"><span class="mr-2"><i class="icon-clock-o"></i> 10:30AM-03:30PM</span> <span><i class="icon-map-o"></i> Venue Main Campus</span></p>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-              <p><a href="event.html">Join Event <i class="ion-ios-arrow-forward"></i></a></p>
-            </div>
-          </div>
-        </div>
+      </div>
+               
+        @endforeach
+        @endif
+          
       </div>
     </div>
   </section>
