@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="hero-wrap" style="background-image: url('/assets/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap" style="background-image: url('/storage/images/{{ App\Setting::find(1)->image8 }}');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
@@ -23,16 +23,19 @@
         </div>
         <div class="w-100"></div>
         <div class="col-md-3">
-          <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+          <p><span>Address:</span> P o box 12617-20100 Nakuru
+          </p>
         </div>
         <div class="col-md-3">
-          <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+          <p><span>Phone:</span> <a href="tel://+254723404427">	+254 723404427 - Regina</a></p>
+          <p><span>Phone:</span> <a href="tel://+254725430488">	+254 725430488 - Angela
+          </a></p>
         </div>
         <div class="col-md-3">
-          <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+          <p><span>Email:</span> <a href="mailto:kadeshbarneakenya@gmail.com">kadeshbarneakenya@gmail.com</a></p>
         </div>
         <div class="col-md-3">
-          <p><span>Website</span> <a href="#">yoursite.com</a></p>
+          <p><span>Website</span> <a href="#">kardeshbernea.com</a></p>
         </div>
       </div>
       <div class="row block-9">

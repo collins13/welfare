@@ -74,7 +74,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <label for="desc">Description</label>
-                    <textarea name="desc" id="desc" cols="30" rows="10" class="form-control" required></textarea>
+                    <textarea name="desc" id="desc" cols="30" rows="10" class="form-control"></textarea>
                 </div>
             </div>
             <br>
@@ -111,13 +111,13 @@
                     </div>
                     <div class="col-md-6">
                         <label for="title">Image</label>
-                        <input type="file" name="edit_image" id="editimage" class="form-control" required>
+                        <input type="file" name="edit_image" id="editimage" class="form-control">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <label for="desc">Description</label>
-                        <textarea name="editdesc" id="editdesc" cols="30" rows="10" class="form-control" required></textarea>
+                        <textarea name="editdesc" id="editdesc" cols="30" rows="10" class="form-control" ></textarea>
                     </div>
                 </div>
                 <br>
@@ -153,6 +153,7 @@
                         var data = res.edit_cat;
                         $("#edittitle").val(data.title);
                         $("#editdesc").val(data.description);
+                        tinymce.get('editdesc').setContent(data.description);
                         $("#id").val(data.id);
                     },
                     error:function(err){

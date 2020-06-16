@@ -36,6 +36,9 @@ Route::get('/gallery', 'pagesController@gallery')->name('gallery');
 Route::get('/events', 'pagesController@events')->name('events');
 Route::get('/contact', 'pagesController@contact')->name('contact');
 Route::get('/event_detail/{id}', 'pagesController@event_detail')->name('event_detail');
+Route::get('/blog_details/{id}', 'pagesController@blog_details')->name('blog_details');
+Route::post('/join', 'pagesController@join')->name('join');
+Route::post('/volunter', 'pagesController@volunter')->name('volunter');
 
 //contact routes
 Route::post('/addcontact', 'AdminController@addcontact')->name('addcontact');
@@ -95,6 +98,9 @@ Route::post('/delete_plan/{id}', 'AdminController@delete_plan')->name('delete_pl
 Route::get('/user', 'AdminController@user')->name('user');
 Route::post('/new_user', 'AdminController@new_user')->name('new_user');
 Route::post('/delete_user/{id}', 'AdminController@delete_user')->name('delete_user');
+Route::get('/get_cat', 'AdminController@get_cat')->name('get_cat');
+Route::post('/setting', 'AdminController@setting')->name('setting');
+Route::get('/get_etting', 'AdminController@get_etting')->name('get_etting');
 });
 
 
@@ -104,8 +110,16 @@ Route::post('payment', 'PayPalController@payment')->name('payment');
 Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
 Route::get('payment/success', 'PayPalController@success')->name('payment.success');
 Route::get('get_details', 'AdminController@get_details')->name('get_details');
+Route::get('get_donation', 'AdminController@get_donation')->name('get_donation');
+Route::get('course_details/{id}', 'pagesController@course_details')->name('course_details');
+Route::get('/get_d', 'pagesController@get_d')->name('get_d');
 
 
-
+// gallery
+Route::get('/get_gallery', 'AdminController@get_gallery')->name('get_gallery');
+Route::post('/add_gallery', 'AdminController@add_gallery')->name('add_gallery');
+Route::get('/edit_gallery', 'AdminController@edit_gallery')->name('edit_gallery');
+Route::post('/update_gallery', 'AdminController@update_gallery')->name('update_gallery');
+Route::post('/delete_gallery/{id}', 'AdminController@delete_gallery')->name('delete_gallery');
 // madam grace routes below here
 

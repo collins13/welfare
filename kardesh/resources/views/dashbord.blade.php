@@ -26,7 +26,7 @@
                         </div>
                         <div class="px-2 pb-2 pb-md-0 text-center">
                             <div id="circles-2"></div>
-                            <h6 class="fw-bold mt-3 mb-0">Sales</h6>
+                            <h6 class="fw-bold mt-3 mb-0">Donations</h6>
                         </div>
                         <div class="px-2 pb-2 pb-md-0 text-center">
                             <div id="circles-3"></div>
@@ -44,11 +44,7 @@
                         <div class="col-md-4 d-flex flex-column justify-content-around">
                             <div>
                                 <h6 class="fw-bold text-uppercase text-success op-8">Total Income</h6>
-                                <h3 class="fw-bold">$9.782</h3>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold text-uppercase text-danger op-8">Total Spend</h6>
-                                <h3 class="fw-bold">$1,248</h3>
+                                <h3 class="fw-bold">${{ App\Donate::sum('amount') }}</h3>
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -76,10 +72,10 @@
     Circles.create({
 			id:'circles-1',
 			radius:45,
-			value:60,
+			value:{!! App\User::count() !!},
 			maxValue:100,
 			width:7,
-			text: 5,
+			text: {!! App\User::count() !!},
 			colors:['#f1f1f1', '#FF9E27'],
 			duration:400,
 			wrpClass:'circles-wrp',
@@ -91,10 +87,10 @@
 		Circles.create({
 			id:'circles-2',
 			radius:45,
-			value:70,
+			value:{!! App\Donate::count() !!},
 			maxValue:100,
 			width:7,
-			text: 36,
+			text: {!! App\Donate::count() !!},
 			colors:['#f1f1f1', '#2BB930'],
 			duration:400,
 			wrpClass:'circles-wrp',

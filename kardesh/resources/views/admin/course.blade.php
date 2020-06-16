@@ -186,7 +186,7 @@
               <div class="row">
                   <div class="col-md-6">
                     <label for="cat">Course Category</label>
-                    <select name="cat" id="cat" class="form-control chosen" required>
+                    <select name="cat" id="newcat" class="form-control chosen validatecat" required>
                         <option value="">--select--</option>
                         @foreach ($cats as $item)
                         <option value="{{ $item->id }}">{{ $item->title }}</option>
@@ -206,7 +206,7 @@
               <div class="row">
                 <div class="col-md-12">
                     <label for="image">Description</label>
-                    <textarea name="desc" id="desc" cols="30" rows="10" class="form-control" required></textarea>
+                    <textarea name="desc" id="desc" cols="30" rows="10" class="form-control"></textarea>
                 </div>
               </div>
             
@@ -239,7 +239,7 @@
               <div class="row">
                   <div class="col-md-6">
                     <label for="cat">Course Category</label>
-                    <select name="editcat" id="editcat" class="form-control chosen" required>
+                    <select name="editcat" id="editcat" class="form-control chosen validatecat" required>
                         <option value="">--select--</option>
                         @foreach ($cats as $item)
                         <option value="{{ $item->id }}">{{ $item->title }}</option>
@@ -259,7 +259,7 @@
               <div class="row">
                 <div class="col-md-12">
                     <label for="image">Description</label>
-                    <textarea name="editdesc" id="editdesc" cols="30" rows="10" class="form-control" required></textarea>
+                    <textarea name="editdesc" id="editdesc" cols="30" rows="10" class="form-control"></textarea>
                 </div>
               </div>
             
@@ -357,6 +357,7 @@
                         $('.chosen').trigger('chosen:updated');
                         $("#editamount").val(data.Amount);
                         $("#editdesc").val(data.description);
+                        tinymce.get('editdesc').setContent(data.description);
                         $("#courseid").val(data.id);
                     },
                     error:function(err){
@@ -403,6 +404,33 @@
            var button_id = $(this).attr("id");   
            $('#row'+button_id+'').remove();  
       });  
+
+
+      $(".validatecat").change(function(){
+        $('.chosen').trigger('chosen:updated');
+        var id = $(this).val();
+        getd(id)
+  
+      })
         })
+
+        function getd(id) {
+          $.ajax({
+                    url:"{{ route('get_cat') }}",
+                    type:"get",
+                    data:{'id': id, },
+                    success:function(res){
+                      var data = res.cat1;
+                      if (id == data.course_id) {
+                        toastr.error("category selected already in use please another one", "error");
+                        $('.validatecat option[value=""]').prop('selected','selected')
+                        $('.chosen').trigger('chosen:updated');
+                      }
+                    },
+                    error:function(err){
+                        toastr.error('an error occured');
+                    }
+                })
+        }
     </script>
 @endpush

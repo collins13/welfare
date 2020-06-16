@@ -11,6 +11,9 @@ use App\Event;
 use App\User;
 use Carbon\Carbon;
 use App\Plan;
+use App\Donate;
+use App\Gallery;
+use App\Setting;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\UserEmail;
@@ -107,7 +110,10 @@ class AdminController extends Controller
         $course = Course::find($request->id);
         $course->course_id = $request->editcat;
         $course->Amount = $request->editamount;
-        $course->image = $fileNameToStore;
+        if ($request->hasFile('edit_image')) {
+            $course->image = $fileNameToStore;
+        }
+      
         $course->description = $request->editdesc;
         
 
@@ -390,5 +396,194 @@ class AdminController extends Controller
     {
         $details =  Plan::where('id', ((int)$request->id))->first();
         return response()->json(['details'=>$details]);
+    }
+
+    public function get_donation(Request $request)
+    {
+        $don = Donate::all();
+        return response()->json(['status'=>1, 'don'=>$don]);
+    }
+
+    public function get_cat(Request $request)
+    {
+        $cat1 = Course::where('course_id', $request->id)->first();
+        return response()->json(['status'=>1, 'cat1'=>$cat1]);
+    }
+
+
+    public function get_gallery(Request $request){
+        $gallerys = Gallery::all();
+        return view('admin.gallery', compact('gallerys'));
+    }
+    public function add_gallery(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $files = $request->file('image');
+            foreach ($files as $file) {
+                $fileNameWithExt = $file->getClientOriginalName();
+                $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+                $path = $file->storeAs('public/images', $fileNameToStore);
+                
+                    $gl = new Gallery();
+                    $gl->image = $fileNameToStore;
+                    $gl->save();
+            }
+            
+        
+        } else {
+            $fileNameToStore = 'no_image.jpg';
+        }
+
+        return redirect()->back()->with('success', 'uploded successfully');
+
+       
+    }
+    public function edit_gallery(Request $request)
+    {
+        $edit = Gallery::find((int)$request->id);
+        return response()->json(['edit'=>$edit]);
+    }
+
+    public function update_gallery(Request $request)
+    {
+        if ($request->hasFile('edit_image')) {
+            $fileNameWithExt = $request->file('edit_image')->getClientOriginalName();
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('edit_image')->getClientOriginalExtension();
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $path = $request->file('edit_image')->storeAs('public/images', $fileNameToStore);
+        }
+        $lunch = Gallery::find((int)$request->id);
+        if ($request->hasFile('edit_image')) {
+            $lunch->image = $fileNameToStore;
+        }
+        $lunch->save();
+        return redirect()->back()->with('success', 'uploded successfully');
+    }
+
+
+    public function delete_gallery(Request $request, $id)
+    {
+        $user = Gallery::find($id);
+        $user->delete($id);
+
+        return response()->json(['status'=>1]);
+    }
+
+    public function setting(Request $request)
+    {
+        if ($request->hasFile('image1')) {
+            $fileNameWithExt1 = $request->file('image1')->getClientOriginalName();
+            $filename1 = pathinfo($fileNameWithExt1, PATHINFO_FILENAME);
+            $extension1 = $request->file('image1')->getClientOriginalExtension();
+            $fileNameToStore1 = $filename1 . '_' . time() . '.' . $extension1;
+            $path1 = $request->file('image1')->storeAs('public/images', $fileNameToStore1);
+        }
+        if ($request->hasFile('image2')) {
+            $fileNameWithExt2 = $request->file('image2')->getClientOriginalName();
+            $filename2 = pathinfo($fileNameWithExt2, PATHINFO_FILENAME);
+            $extension2 = $request->file('image2')->getClientOriginalExtension();
+            $fileNameToStore2 = $filename2 . '_' . time() . '.' . $extension2;
+            $path2 = $request->file('image2')->storeAs('public/images', $fileNameToStore2);
+        }
+        if ($request->hasFile('image3')) {
+            $fileNameWithExt3 = $request->file('image3')->getClientOriginalName();
+            $filename3 = pathinfo($fileNameWithExt3, PATHINFO_FILENAME);
+            $extension3 = $request->file('image3')->getClientOriginalExtension();
+            $fileNameToStore3 = $filename3 . '_' . time() . '.' . $extension3;
+            $path3 = $request->file('image3')->storeAs('public/images', $fileNameToStore3);
+        }
+        if ($request->hasFile('image4')) {
+            $fileNameWithExt4 = $request->file('image4')->getClientOriginalName();
+            $filename4 = pathinfo($fileNameWithExt4, PATHINFO_FILENAME);
+            $extension4 = $request->file('image4')->getClientOriginalExtension();
+            $fileNameToStore4 = $filename4 . '_' . time() . '.' . $extension4;
+            $path4 = $request->file('image4')->storeAs('public/images', $fileNameToStore4);
+        }
+        if ($request->hasFile('image5')) {
+            $fileNameWithExt5 = $request->file('image5')->getClientOriginalName();
+            $filename5 = pathinfo($fileNameWithExt5, PATHINFO_FILENAME);
+            $extension5 = $request->file('image5')->getClientOriginalExtension();
+            $fileNameToStore5 = $filename5 . '_' . time() . '.' . $extension5;
+            $path5 = $request->file('image5')->storeAs('public/images', $fileNameToStore5);
+        }
+        if ($request->hasFile('image6')) {
+            $fileNameWithExt6 = $request->file('image6')->getClientOriginalName();
+            $filename6 = pathinfo($fileNameWithExt6, PATHINFO_FILENAME);
+            $extension6 = $request->file('image6')->getClientOriginalExtension();
+            $fileNameToStore6 = $filename6 . '_' . time() . '.' . $extension6;
+            $path6 = $request->file('image6')->storeAs('public/images', $fileNameToStore6);
+        }
+        if ($request->hasFile('image7')) {
+            $fileNameWithExt7 = $request->file('image7')->getClientOriginalName();
+            $filename7 = pathinfo($fileNameWithExt7, PATHINFO_FILENAME);
+            $extension7 = $request->file('image7')->getClientOriginalExtension();
+            $fileNameToStore7 = $filename7 . '_' . time() . '.' . $extension7;
+            $path7 = $request->file('image7')->storeAs('public/images', $fileNameToStore7);
+        }
+        if ($request->hasFile('image8')) {
+            $fileNameWithExt8 = $request->file('image8')->getClientOriginalName();
+            $filename8 = pathinfo($fileNameWithExt8, PATHINFO_FILENAME);
+            $extension8 = $request->file('image8')->getClientOriginalExtension();
+            $fileNameToStore8 = $filename8 . '_' . time() . '.' . $extension8;
+            $path8 = $request->file('image8')->storeAs('public/images', $fileNameToStore8);
+        }
+        if ($request->hasFile('video')) {
+            $fileNameWithExt9 = $request->file('video')->getClientOriginalName();
+            $filename9 = pathinfo($fileNameWithExt9, PATHINFO_FILENAME);
+            $extension9 = $request->file('video')->getClientOriginalExtension();
+            $fileNameToStore9 = $filename9 . '_' . time() . '.' . $extension9;
+            $path9 = $request->file('video')->storeAs('public/images', $fileNameToStore9);
+        }
+
+        $setting = Setting::find(1);
+        if ($request->hasFile('image1')) {
+            $setting->image1 = $fileNameToStore1;
+        }
+
+        if ($request->hasFile('image2')) {
+            $setting->image2 = $fileNameToStore2;
+        }
+        if ($request->hasFile('image3')) {
+            $setting->image3 = $fileNameToStore3;
+        }
+
+       
+        if ($request->hasFile('image4')) {
+            $setting->image4 = $fileNameToStore4;
+        }
+
+        if ($request->hasFile('image5')) {
+            $setting->image5 = $fileNameToStore5;
+        }
+
+        if ($request->hasFile('image6')) {
+            $setting->image6 = $fileNameToStore6;
+        }
+
+        if ($request->hasFile('image7')) {
+            $setting->image7 = $fileNameToStore7;
+        }
+
+    
+        if ($request->hasFile('image8')) {
+            $setting->image8 = $fileNameToStore8;
+        }
+
+  
+        if ($request->hasFile('video')) {
+            $setting->video = $fileNameToStore9;
+        }
+     $setting->save();
+
+     return redirect()->back()->with('success', 'uploded successfully');
+    }
+
+    public function get_etting(Request $request)
+    {
+        $settings = Setting::all();
+        return view('admin.seting', compact('settings'));
     }
 }

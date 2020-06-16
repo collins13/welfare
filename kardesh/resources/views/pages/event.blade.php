@@ -21,7 +21,7 @@
           <p>
             <img src="/storage/images/{{ $event->image }}" alt="" class="img-fluid">
           </p>
-          <p>{{ $event->description }}</p>
+          <p>{!! $event->description !!}</p>
          
 
 
@@ -31,7 +31,8 @@
             <div class="categories">
                 <h3>Join The event</h3><hr>
              
-                  <form action="" method="POST">
+                  <form action="{{ route('join') }}" method="POST">
+                    @csrf
                 <div class="row">
                   <div class="col-md-12">
                       <label for="name">Name</label>
@@ -39,11 +40,11 @@
                   </div>
                   <div class="col-md-12">
                     <label for="name">Phone No</label>
-                    <input type="text" name="name" id="name" class="form-control" required>
+                    <input type="number" name="phone" id="phone" class="form-control" required>
                 </div>
                 <div class="col-md-12">
                     <label for="name">Email</label>
-                    <input type="text" name="name" id="name" class="form-control" required>
+                    <input type="email" name="email" id="email" class="form-control" required>
                 </div>
             </div><br>
                 <button type="submit" class="btn btn-primary btn-block">Submit</button>
@@ -58,7 +59,7 @@
             <div class="block-21 mb-4 d-flex">
                 <a class="blog-img mr-4" style="background-image: url(/storage/images/{{ $item->image }});"></a>
                 <div class="text">
-                  <h3 class="heading"><a href="#">{{ Str::limit($item->description, 80) }}</a></h3>
+                  <h3 class="heading"><a href="#">{!!substr(strip_tags($event->description),0,80,) !!}</a></h3>
                   <div class="meta">
                     <div><a href="#"><span class="icon-calendar"></span> {{ Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, MMMM Do YYYY') }}</a></div>
                     {{-- <div><a href="#"><span class="icon-person"></span> </a></div> --}}

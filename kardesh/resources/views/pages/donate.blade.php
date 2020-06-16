@@ -3,7 +3,7 @@
 
 @section('content')
     
-<div class="hero-wrap" style="background-image: url('/assets/images/bg_6.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap" style="background-image: url('/storage/images/{{ App\Setting::find(1)->image4 }}');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
@@ -83,15 +83,16 @@
           </div>
           <div class="col-md-6 volunteer pl-md-5 ftco-animate">
               <h3 class="mb-3">Be a volunteer</h3>
-              <form action="#" class="volunter-form">
+              <form action="{{ route('volunter') }}" method="POST" class="volunter-form">
+                @csrf
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Your Name">
+            <input type="text" name="name" class="form-control" placeholder="Your Name">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Your Email">
+            <input type="email" name="email"  class="form-control" placeholder="Your Email">
           </div>
           <div class="form-group">
-            <textarea name="" id="" cols="30" rows="3" class="form-control" placeholder="Message"></textarea>
+            <textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="Message"></textarea>
           </div>
           <div class="form-group">
             <input type="submit" value="Send Message" class="btn btn-white py-3 px-5">
@@ -153,7 +154,7 @@
                         </div>
                         <br>
                         <div class="col-md-6">
-                            <label for="amount">Amount</label>
+                            <label for="amount">Amount Donating</label>
                             <input type="text" name="amount" id="amount" class="form-control" required>
                         </div>
                     </div>

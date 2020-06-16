@@ -89,7 +89,7 @@
           <div class="row">
               <div class="col-md-12">
                   <label for="desc">Description</label>
-                  <textarea name="desc" id="desc" cols="30" rows="10" class="form-control" required></textarea>
+                  <textarea name="desc" id="desc" cols="30" rows="10" class="desc"></textarea>
               </div>
           </div>
           <div class="modal-footer">
@@ -144,7 +144,7 @@
           <div class="row">
               <div class="col-md-12">
                   <label for="desc">Description</label>
-                  <textarea name="editdesc" id="editdesc" cols="30" rows="10" class="form-control" required></textarea>
+                  <textarea name="editdesc" id="editdesc" cols="30" rows="10" class="form-control" ></textarea>
               </div>
           </div>
           <div class="modal-footer">
@@ -185,6 +185,7 @@
                         $("#edittime").val(moment(data.time));
                         $("#editvenue").val(data.venue);
                         $("#editdesc").val(data.description);
+                        tinymce.get('editdesc').setContent(data.description);
                         $("#id").val(data.id);
                     },
                     error:function(err){

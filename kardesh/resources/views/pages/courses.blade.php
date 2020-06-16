@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="hero-wrap" style="background-image: url('/assets/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap" style="background-image: url('/storage/images/{{ App\Setting::find(1)->image3 }}');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
       <div class="row no-gutters slider-text align-items-center justify-content-center" data-scrollax-parent="true">
@@ -18,102 +18,30 @@
   <section class="ftco-section">
     <div class="container">
         <div class="row">
+            @foreach ($courses as $course)
             <div class="col-md-4 ftco-animate">
-                <div class="cause-entry">
-                      <a href="#" class="img" style="background-image: url(/assets/images/cause-1.jpg);"></a>
-                      <div class="text p-3 p-md-4">
-                          <h3><a href="#">Clean water for the urban area</a></h3>
-                          <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                          <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-                      </div>
+              <div class="cause-entry">
+                <a href="#" class="img" style="background-image: url(/storage/images/{{ $course->image }});"></a>
+                <div class="text p-3 p-md-4">
+                  <h3><a href="#">{{ $course->categories['title'] }}</a></h3>
+                  <p>{!! substr(strip_tags($course->description),0,80,) !!}</p>
+                  <span class="donation-time mb-3 d-block">{{ App\Donate::where('cat_id', $course->cat_id)->first()->created_at->diffForHumans()}}</span>
+                  <div class="progress custom-progress-success">
+                    <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="cause-entry">
-                      <a href="#" class="img" style="background-image: url(/assets/images/cause-2.jpg);"></a>
-                      <div class="text p-3 p-md-4">
-                          <h3><a href="#">Clean water for the urban area</a></h3>
-                          <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                          <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
+                  <span class="fund-raised d-block"><span class="text-success">{{ App\Donate::where('cat_id', $course->cat_id)->sum('amount') ? App\Donate::where('cat_id', $course->cat_id)->sum('amount') : 0}}</span> raised of ${{ $course->Amount }}</span><hr>
+                  <a href="{{ route('course_details', $course->id) }}" class="text center">Read more and Donate <i class="ion-ios-arrow-forward"></i></a>
+                </div>
               </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-                      </div>
-                  </div>
             </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="cause-entry">
-                      <a href="#" class="img" style="background-image: url(/assets/images/cause-3.jpg);"></a>
-                      <div class="text p-3 p-md-4">
-                          <h3><a href="#">Clean water for the urban area</a></h3>
-                          <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                          <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-                      </div>
-                  </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="cause-entry">
-                      <a href="#" class="img" style="background-image: url(/assets/images/cause-4.jpg);"></a>
-                      <div class="text p-3 p-md-4">
-                          <h3><a href="#">Clean water for the urban area</a></h3>
-                          <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                          <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-                      </div>
-                  </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="cause-entry">
-                      <a href="#" class="img" style="background-image: url(/assets/images/cause-5.jpg);"></a>
-                      <div class="text p-3 p-md-4">
-                          <h3><a href="#">Clean water for the urban area</a></h3>
-                          <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                          <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-                      </div>
-                  </div>
-            </div>
-            <div class="col-md-4 ftco-animate">
-                <div class="cause-entry">
-                      <a href="#" class="img" style="background-image: url(/assets/images/cause-6.jpg);"></a>
-                      <div class="text p-3 p-md-4">
-                          <h3><a href="#">Clean water for the urban area</a></h3>
-                          <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life</p>
-                          <span class="donation-time mb-3 d-block">Last donation 1w ago</span>
-              <div class="progress custom-progress-success">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="fund-raised d-block">$12,000 raised of $30,000</span>
-                      </div>
-                  </div>
-            </div>
+              @endforeach
+
       </div>
       <div class="row mt-5">
         <div class="col text-center">
           <div class="block-27">
             <ul>
-              <li><a href="#">&lt;</a></li>
-              <li class="active"><span>1</span></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
-              <li><a href="#">&gt;</a></li>
+              <li class="active"><span>{{ $courses->links() }}</span></li>
             </ul>
           </div>
         </div>
@@ -130,15 +58,16 @@
           </div>
           <div class="col-md-6 volunteer pl-md-5 ftco-animate">
               <h3 class="mb-3">Be a volunteer</h3>
-              <form action="#" class="volunter-form">
+              <form action="{{ route('volunter') }}" method="POST" class="volunter-form">
+                @csrf
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Your Name">
+            <input type="text" name="name" class="form-control" placeholder="Your Name">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Your Email">
+            <input type="email" name="email"  class="form-control" placeholder="Your Email">
           </div>
           <div class="form-group">
-            <textarea name="" id="" cols="30" rows="3" class="form-control" placeholder="Message"></textarea>
+            <textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="Message"></textarea>
           </div>
           <div class="form-group">
             <input type="submit" value="Send Message" class="btn btn-white py-3 px-5">
