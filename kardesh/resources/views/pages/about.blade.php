@@ -114,7 +114,7 @@
         </div>
       </div>
       <div class="row">
-        @foreach (App\Donate::orderBy('date_created', 'DESC')->paginate(3) as $donate)
+        @foreach (App\Donate::orderBy('created_at', 'DESC')->paginate(3) as $donate)
         <div class="col-lg-4 d-flex mb-sm-4 ftco-animate">
           <div class="staff">
               <div class="d-flex mb-4">
