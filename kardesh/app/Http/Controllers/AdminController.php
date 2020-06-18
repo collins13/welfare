@@ -168,6 +168,7 @@ class AdminController extends Controller
             session()->flash("success", "blog added successfuly");
             return redirect()->back();
         } catch (\Exception $e) {
+            // dd($e);
             session()->flash("error", "an errror occured");
             return redirect()->back();
         }
@@ -193,7 +194,10 @@ class AdminController extends Controller
         try {
             $blog =  Blog::find($request->id);
             $blog->title = $request->edittitle;
-            $blog->image = $fileNameToStore;
+            if ($request->hasFile('edit_image')) {
+                $blog->image = $fileNameToStore;
+            }
+           
             $blog->created_by = "admin";
             $blog->created_at = Carbon::now();
             $blog->description = $request->editdesc;
@@ -313,7 +317,10 @@ class AdminController extends Controller
 
         $event = Event::find((int)$request->id);
         $event->agenda = $request->editagenda;
-        $event->image = $fileNameToStore;
+        if ($request->hasFile('edit_image')) {
+            $event->image = $fileNameToStore;
+        }
+        
         $event->venue = $request->editvenue;
         $event->created_at = Carbon::parse($request->editdate);
         $event->time = $request->edittime;
