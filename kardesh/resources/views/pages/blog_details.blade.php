@@ -28,7 +28,7 @@
         </div> <!-- .col-md-8 -->
         <div class="col-md-4 sidebar ftco-animate">
           <div class="sidebar-box ftco-animate">
-            <h3>Recent Courses</h3>
+            <h3>Recent Blogs</h3>
             @foreach ($blogs as $item)
             <div class="block-21 mb-4 d-flex">
                 <a class="blog-img mr-4" style="background-image: url(/storage/images/{{ $item->image }});"></a>
