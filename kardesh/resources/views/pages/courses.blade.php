@@ -25,7 +25,14 @@
                 <div class="text p-3 p-md-4">
                   <h3><a href="#">{{ $course->categories['title'] }}</a></h3>
                   <p>{!! substr(strip_tags($course->description),0,80,) !!}</p>
-                  <span class="donation-time mb-3 d-block">{{ App\Donate::where('cat_id', $course->cat_id)->first()->created_at->diffForHumans()}}</span>
+                  <span class="donation-time mb-3 d-block">
+                    @if ($course->course_id == $course->cat_id)
+                    {{ App\Donate::where('cat_id', $course->course_id)->first()->created_at->diffForHumans()}}
+                  
+                    @else
+                    <span>Not Donated</span>
+                    @endif
+                  </span>
                   <div class="progress custom-progress-success">
                     <div class="progress-bar bg-primary" role="progressbar" style="width: 28%" aria-valuenow="28" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
