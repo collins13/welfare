@@ -86,13 +86,13 @@
               <form action="{{ route('volunter') }}" method="POST" class="volunter-form">
                 @csrf
           <div class="form-group">
-            <input type="text" name="name" class="form-control" placeholder="Your Name">
+            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
           </div>
           <div class="form-group">
-            <input type="email" name="email"  class="form-control" placeholder="Your Email">
+            <input type="email" name="email"  class="form-control" placeholder="Your Email" required>
           </div>
           <div class="form-group">
-            <textarea name="message" id="" cols="30" rows="10" class="form-control" placeholder="Message"></textarea>
+            <textarea name="message" id="" cols="30" rows="10" class="form-control" required placeholder="Message"></textarea>
           </div>
           <div class="form-group">
             <input type="submit" value="Send Message" class="btn btn-white py-3 px-5">
